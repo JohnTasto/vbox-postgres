@@ -29,4 +29,3 @@ class School(models.Model):
     def __str__(self):
         formatted = "{sch} of {dst}"
         return formatted.format(sch=SchoolID, dst=DistID)
-
