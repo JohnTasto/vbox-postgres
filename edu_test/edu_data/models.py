@@ -4,28 +4,28 @@ from django.db import models
 # Create your models here.
 
 class Performance(models.Model):
-    DistrictID = models.IntegerField()
-    District = models.CharField(max_length=40)
-    SchoolID = models.IntegerField()
-    School = models.CharField(max_length=70)
-    AcademicYear = models.IntegerField
-    Subject = models.CharField(max_length=25)
-    Subgroup = models.CharField(max_length=35)
-    GradeLevel = models.CharField(max_length=3)
-    ParticipationRate2014to2015 = models.FloatField()
-    PercentageMeetsORExceeds2014to2015 = models.FloatField()
+    district_id = models.IntegerField()
+    district = models.CharField(max_length=40)
+    school_id = models.IntegerField()
+    school = models.CharField(max_length=70)
+    academic_year = models.IntegerField()
+    subject = models.CharField(max_length=25)
+    subgroup = models.CharField(max_length=35)
+    grade_level = models.CharField(max_length=3)
+    participation_rate_2014_to_2015 = models.FloatField(null=True, blank=True)
+    percentage_meets_or_exceeds_2014_to_2015 = models.FloatField(null=True, blank=True)
 
     def __str__(self):
         formatted = "{sch} Grade {gr} {yr}"
-        return formatted.format(sch=self.School, gr=self.GradeLevel, yr=str(self.AcademicYear))
+        return formatted.format(sch=self.school, gr=self.grade_level, yr=str(self.academic_year))
 
 
 class School(models.Model):
-    SchoolID = models.IntegerField()
-    School = models.CharField(max_length=60)
-    District = models.CharField(max_length=50)
-    DistID = models.IntegerField()
+    school_id = models.IntegerField()
+    school = models.CharField(max_length=60)
+    district = models.CharField(max_length=50)
+    dist_id = models.IntegerField()
 
     def __str__(self):
         formatted = "{sch} of {dst}"
-        return formatted.format(sch=SchoolID, dst=DistID)
+        return formatted.format(sch=self.school, dst=self.district)

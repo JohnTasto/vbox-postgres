@@ -15,26 +15,30 @@ echo "export PATH=\"$HOME/miniconda3/bin:\$PATH\"" >> ~/.bash_profile
 
 # install Conda packages
 
-echo 'Installing Jupyter...'
-conda install -y jupyter >> $LOGFILE
-mkdir ~/.jupyter && cp ~/proj/jupyter_notebook_config.py ~/.jupyter
+# echo 'Installing Jupyter...'
+# conda install -y jupyter >> $LOGFILE
+# mkdir ~/.jupyter && cp ~/proj/jupyter_notebook_config.py ~/.jupyter
 
-echo 'Installing Pandas...'
-conda install -y pandas >> $LOGFILE
+# echo 'Installing Pandas...'
+# conda install -y pandas >> $LOGFILE
 
-echo 'Installing scikit and seaborn...'
-conda install -y seaborn scikit-learn >> $LOGFILE
+# echo 'Installing scikit and seaborn...'
+# conda install -y seaborn scikit-learn >> $LOGFILE
 
 
 
-# add virtual environment
-
+# # add virtual environment
+#
 # echo 'Creating Conda virtual environment...'
 # conda create -n cvdjango python django psycopg2 >> $LOGFILE
 # source activate cvdjango >> $LOGFILE
 
+
+
+echo 'Installing django and psycopg2...'
 conda install django >> $LOGFILE
 conda install psycopg2 >> $LOGFILE
+
 
 
 # install Python packages

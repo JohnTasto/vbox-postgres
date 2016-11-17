@@ -10,6 +10,7 @@ su vagrant -c "touch $LOGFILE"
 
 
 # Add postgis to list of trusted repositories
+
 echo 'Adding postgis to list of trusted repositories...'
 sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt trusty-pgdg main" >> /etc/apt/sources.list'
 wget --quiet -O - http://apt.postgresql.org/pub/repos/apt/ACCC4CF8.asc | apt-key add -
@@ -20,8 +21,8 @@ apt-get upgrade -qy >> $LOGFILE
 
 # install apt packages
 
-# echo 'Installing Firefox...'
-# apt-get install -y firefox >> $LOGFILE
+echo 'Installing Firefox...'
+apt-get install -qy firefox >> $LOGFILE
 echo 'Installing PostgreSQL 9.5...'
 apt-get install -qy postgresql-9.5-postgis-2.2 >> $LOGFILE
 echo 'Installing pgadmin3...'
@@ -52,12 +53,13 @@ su postgres -c "psql -c \"CREATE USER vagrant WITH CREATEUSER PASSWORD 'vagrant'
 echo 'Creating vagrant database in PostgreSQL...'
 su postgres -c 'psql -c "CREATE DATABASE vagrant;"' >> $LOGFILE
 
+echo 'Creating django database in PostgreSQL...'
+su postgres -c 'psql -c "CREATE DATABASE django;"' >> $LOGFILE
+
 # echo 'Loading data into PostgreSQL...'
 # su vagrant -c 'psql < proj/buildCrimeDataRaw.sql' >> $LOGFILE
 
 
 
 echo 'Finished installing packages.'
-echo 'Run the following line on your host machine:'
-echo '$ vagrant plugin install vagrant-vbguest'
 
