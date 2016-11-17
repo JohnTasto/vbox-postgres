@@ -29,10 +29,12 @@ conda install -y seaborn scikit-learn >> $LOGFILE
 
 # add virtual environment
 
-echo 'Creating Conda virtual environment...'
-conda create -n cvdjango python django psycopg2 >> $LOGFILE
-source activate cvdjango >> $LOGFILE
+# echo 'Creating Conda virtual environment...'
+# conda create -n cvdjango python django psycopg2 >> $LOGFILE
+# source activate cvdjango >> $LOGFILE
 
+conda install django >> $LOGFILE
+conda install psycopg2 >> $LOGFILE
 
 
 # install Python packages

@@ -30,8 +30,6 @@ echo 'Installing pgRouting 2.1...'
 apt-get install -qy postgresql-9.5-pgrouting >> $LOGFILE
 echo 'Installing Python for Postgres...'
 apt-get install -qy postgresql-plpython3-9.5 >> $LOGFILE
-# echo 'Installing pip...'
-# apt-get install -y python-pip >> $LOGFILE
 echo 'Installing dos2unix...'
 apt-get install -qy dos2unix >> $LOGFILE
 
@@ -49,7 +47,7 @@ su vagrant -c 'bash ~/proj/user_provision_script.sh'
 # configure PostgreSQL
 
 echo 'Creating vagrant user in PostgreSQL...'
-su postgres -c 'psql -c "CREATE USER vagrant WITH CREATEUSER;"' >> $LOGFILE
+su postgres -c "psql -c \"CREATE USER vagrant WITH CREATEUSER PASSWORD 'vagrant';\"" >> $LOGFILE
 
 echo 'Creating vagrant database in PostgreSQL...'
 su postgres -c 'psql -c "CREATE DATABASE vagrant;"' >> $LOGFILE
@@ -62,3 +60,4 @@ su postgres -c 'psql -c "CREATE DATABASE vagrant;"' >> $LOGFILE
 echo 'Finished installing packages.'
 echo 'Run the following line on your host machine:'
 echo '$ vagrant plugin install vagrant-vbguest'
+
